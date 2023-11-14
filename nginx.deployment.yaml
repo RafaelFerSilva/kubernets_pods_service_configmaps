@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: nignx-pod
+      labels:
+        app: nignx-pod
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+  selector:
+    matchLabels:
+      app: nignx-pod
